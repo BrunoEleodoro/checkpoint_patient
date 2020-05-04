@@ -1,10 +1,10 @@
 import 'dart:math';
-
-import 'package:checkpoint_patient/main.dart';
 import 'package:flutter/material.dart';
 import 'package:hex/hex.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web3dart/web3dart.dart';
+
+import 'home.dart';
 
 class CriarCarteiraPage extends StatefulWidget {
   @override

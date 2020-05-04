@@ -1,8 +1,16 @@
+import 'dart:collection';
+import 'dart:convert';
+import 'dart:core';
+import 'dart:typed_data';
+
 import 'package:checkpoint_patient/pages/passos.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web3dart/web3dart.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,10 +18,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
   var address = "a";
   SharedPreferences prefs;
   bool viewCode = false;
+  List hospitals = List();
+  HashMap<String, List> hospitals_steps = HashMap();
   List consultas = List.from([
     {
       'hospital': "Sirio Libanes",
@@ -68,19 +77,62 @@ class _HomePageState extends State<HomePage> {
     }
   ]);
 
-@override
-void initState() { 
-  super.initState();
-  Future.delayed(Duration.zero, () async {
-    prefs = await SharedPreferences.getInstance();
-    setState(() {
-      address = prefs.getString('pubKey');
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+      prefs = await SharedPreferences.getInstance();
+      setState(() {
+        address = prefs.getString('pubKey');
+      });
+      getSteps();
     });
-  });
-}
+  }
+
+  void getSteps() async {
+    final client = Web3Client(
+        "https://rinkeby.infura.io/v3/6c35b5b0fa1b4010be4f0db6e60002cb",
+        http.Client());
+    rootBundle.loadString('assets/standardToken.json').then((abi) async {
+      final contract = DeployedContract(
+          ContractAbi.fromJson(abi, "StandardTOken"),
+          EthereumAddress.fromHex(
+              "0x2C4e20CE742FA3Fc194B5fB0745Fe90ca81cb807"));
+      var transfer = contract.function('getActions');
+
+      Credentials credentials =
+          EthPrivateKey.fromHex('0x' + prefs.getString('privKey'));
+
+      List information = await client.call(
+          sender: await credentials.extractAddress(),
+          contract: contract,
+          function: transfer,
+          params: []);
+      information = information[0];
+      var i = 0;
+      while (i < information.length) {
+        var hospitalName = information[i][2].toString();
+        var description = information[i][3];
+        var dataHora = information[i][4];
+        if (hospitals.indexOf(hospitalName) == -1) {
+          hospitals.add(hospitalName);
+        }
+        if (hospitals_steps[hospitalName] == null) {
+          hospitals_steps[hospitalName] = List();
+        }
+        hospitals_steps[hospitalName]
+            .add({'title': description, 'data': dataHora, 'hora': dataHora});
+        i++;
+      }
+      setState(() {});
+      print(information);
+      print(EthereumAddress.fromHex(prefs.getString('pubKey')));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    // getSteps();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -90,7 +142,7 @@ void initState() {
             ),
             Center(
               child: Text(
-                'Seja bem vinda, Cida!',
+                'Seja bem vindo(a)!',
                 style: TextStyle(fontSize: 25),
               ),
             ),
@@ -238,7 +290,7 @@ void initState() {
               padding: EdgeInsets.only(bottom: 20),
               child: ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
-                  itemCount: consultas.length,
+                  itemCount: hospitals.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return GestureDetector(
@@ -247,7 +299,10 @@ void initState() {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => PassosPage(
-                                      consulta: consultas[index],
+                                      consulta: {
+                                        'steps':
+                                            hospitals_steps[hospitals[index]]
+                                      },
                                     )));
                       },
                       child: Container(
@@ -265,8 +320,8 @@ void initState() {
                                     flex: 2,
                                     child: CircleAvatar(
                                       backgroundColor: Colors.greenAccent,
-                                      child: Text(consultas[index]['hospital']
-                                          .toString()[0]),
+                                      child:
+                                          Text(hospitals[index].toString()[0]),
                                     ),
                                   ),
                                   SizedBox(
@@ -275,7 +330,7 @@ void initState() {
                                   Expanded(
                                     flex: 8,
                                     child: Text(
-                                      consultas[index]['hospital'],
+                                      hospitals[index],
                                     ),
                                   ),
                                   Expanded(
