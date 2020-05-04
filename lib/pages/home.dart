@@ -23,59 +23,6 @@ class _HomePageState extends State<HomePage> {
   bool viewCode = false;
   List hospitals = List();
   HashMap<String, List> hospitals_steps = HashMap();
-  List consultas = List.from([
-    {
-      'hospital': "Sirio Libanes",
-      'data': '28/04/2020',
-      'steps': [
-        {'title': 'Chegou ao local', 'data': '28/04/2020', 'hora': '11:32'},
-        {
-          'title': 'Realizou consulta no clinico geral',
-          'data': '28/04/2020',
-          'hora': '12:50'
-        },
-        {
-          'title': 'Realizou exame de sangue',
-          'data': '28/04/2020',
-          'hora': '13:12'
-        },
-      ]
-    },
-    {
-      'hospital': "Sirio Libanes",
-      'data': '28/04/2020',
-      'steps': [
-        {'title': 'Chegou ao local', 'data': '28/04/2020', 'hora': '11:32'},
-        {
-          'title': 'Realizou consulta no clinico geral',
-          'data': '28/04/2020',
-          'hora': '12:50'
-        },
-        {
-          'title': 'Realizou exame de sangue',
-          'data': '28/04/2020',
-          'hora': '13:12'
-        },
-      ]
-    },
-    {
-      'hospital': "Sirio Libanes",
-      'data': '28/04/2020',
-      'steps': [
-        {'title': 'Chegou ao local', 'data': '28/04/2020', 'hora': '11:32'},
-        {
-          'title': 'Realizou consulta no clinico geral',
-          'data': '28/04/2020',
-          'hora': '12:50'
-        },
-        {
-          'title': 'Realizou exame de sangue',
-          'data': '28/04/2020',
-          'hora': '13:12'
-        },
-      ]
-    }
-  ]);
 
   @override
   void initState() {
@@ -102,7 +49,8 @@ class _HomePageState extends State<HomePage> {
 
       Credentials credentials =
           EthPrivateKey.fromHex('0x' + prefs.getString('privKey'));
-
+      hospitals.clear();
+      hospitals_steps.clear();
       List information = await client.call(
           sender: await credentials.extractAddress(),
           contract: contract,
@@ -138,11 +86,22 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 50,
             ),
-            Center(
-              child: Text(
-                'Seja bem vindo(a)!',
-                style: TextStyle(fontSize: 25),
-              ),
+            Stack(
+              children: <Widget>[
+                Center(
+                  child: Text(
+                    'Seja bem vindo(a)!',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child:
+                      IconButton(icon: Icon(Icons.refresh), onPressed: () {
+                        getSteps();
+                      }),
+                )
+              ],
             ),
             Center(
                 child: Text(
