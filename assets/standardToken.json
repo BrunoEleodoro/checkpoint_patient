@@ -3,6 +3,31 @@
 		"anonymous": false,
 		"inputs": [
 			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "key",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "cpf",
+						"type": "string"
+					}
+				],
+				"indexed": false,
+				"internalType": "struct Checkpoint.Doctor",
+				"name": "msg",
+				"type": "tuple"
+			}
+		],
+		"name": "MostrarDoctor",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
 				"indexed": false,
 				"internalType": "address",
 				"name": "msg",
@@ -34,6 +59,69 @@
 			}
 		],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "patientKey",
+				"type": "address"
+			}
+		],
+		"name": "getActions",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "key",
+						"type": "address"
+					},
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "patient",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "doctor",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "hospitalName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "description",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "date",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "hour",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Checkpoint.Action[]",
+						"name": "actions",
+						"type": "tuple[]"
+					}
+				],
+				"internalType": "struct Checkpoint.Patient",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -73,76 +161,6 @@
 			}
 		],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getActions",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "patient",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "doctor",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "hospitalName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "description",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "date",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "hour",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct Checkpoint.Action[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getDoctors",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "key",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "cpf",
-						"type": "string"
-					}
-				],
-				"internalType": "struct Checkpoint.Doctor[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	}
 ]
