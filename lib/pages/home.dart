@@ -125,8 +125,6 @@ class _HomePageState extends State<HomePage> {
         i++;
       }
       setState(() {});
-      print(information);
-      print(EthereumAddress.fromHex(prefs.getString('pubKey')));
     });
   }
 
