@@ -1,20 +1,66 @@
-## Como funciona?
 
-Primeiro passo o usuario vai entrar no app e uma chave publica privada.
 
-## importante lembrar
+--------------------------------------------------------------------
 
-- Chave publica fica disponivel pra todo mundo ver e é usada para criptografar os dados
+<img src="docs/images/LogoCheckpoint.png"/>
 
-- Chave privada somente o usuario pode ter, nao pode esquece-la e é usada para descriptografar os dados.
+## 📖 Projeto Checkpoint
 
-## Tecnologias utilizadas
+O Checkpoint é uma solução que centraliza os dados do paciente no Blockchain através de um Smart Contract retirando estes dados das mãos das operadoras para o paciente. No entanto, este compartilhará os dados com as operadoras e profissionais da saúde para que a prestação do serviço seja eficiente e assim a relação é mais justa e dinâmica, evitando também perda e reinserção de dados.
 
-- Através da rede da Ethereum, vamos utilizar smart contracts para fazer cada transacao das consultas do paciente no hospital  
-    - Ex: Assim que o paciente chegar no atendimento a atendente vai escanear o QRCode do paciente (chave publica) e vai colocar no smart contract.
 
-- A solução pode ser escalavel para um blockchain permissionado, onde nao teremos tantos problemas com o "gas" do contrato.
+## 🚀 Utilização
 
-- No lado do aplicativo estamos utilizando Flutter com as bibliotecas "web3dart","qr_flutter" assim temos um app para Android e Iphone.
+<h3>Atualizações</h3>
+<ul>
+	<li>App para Android e IOS - Flutter</li>
+	<li>Frontend feito PHP/HTML/CSS/JQUERY</li>
+	<li>Gerenciador de pacotes - Composer</li>
+</ul>
 
-- No consultorio medico, temos o framework Laravel juntamente com a biblioteca javascript "Web3" para realizar a conexao com o MetaMask e entao cadastrar a ação que esta acontecendo ("tirando exame de sangue...")
+## Integrações com apis
+
+<h3>Api da Gr1d</h3>
+<ul>
+	<li>Validação do usuário por meios dos dados informados</li>
+</ul>
+
+<h3>Api da twilio</h3>
+<ul>
+	<li>Validação de Código de seguração do cadastro por sms</li>
+    <li>Envio da receita do paciente em pdf pelo whatsapp</li>
+</ul>
+
+
+## 📖 Documentação
+<!-- 
+:point_right: A documentação completa estará disponível [AQUI](https://github.com/victorbilisambipar/checkpoint/blob/master/doc.md). -->
+
+## ✍ Autores
+
+👤 **Victor Bilis**
+
+* Github: [@victorbilisambipar](https://github.com/victorbilisambipar)
+
+👤 **Paulo Victor**
+
+* Github: [@paulovictorBraw](https://github.com/paulovictorBraw)
+
+👤 **Felipe Candian**
+
+* Github: [@felipecandian]( https://github.com/felipecandian)
+
+👤 **Bruno Eleodoro**
+
+* Github: [@BrunoEleodoro]( https://github.com/BrunoEleodoro)
+
+👤 **Rodrigo Temoteo**
+
+* Github: [@rodrigoatemoteo]( https://github.com/rodrigoatemoteo)
+
+## 📝 Licença
+
+Copyright © 2020 Checkpoint<br />
+
+***
+
