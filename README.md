@@ -2,20 +2,20 @@
 
 --------------------------------------------------------------------
 
-<img src="docs/images/LogoCheckpoint.png"/>
+<img src="assets/icon/icon.png"/>
 
-## 📖 Projeto Checkpoint
+## 📖 Projeto Checkpoint - Paciente App
 
 O Checkpoint é uma solução que centraliza os dados do paciente no Blockchain através de um Smart Contract retirando estes dados das mãos das operadoras para o paciente. No entanto, este compartilhará os dados com as operadoras e profissionais da saúde para que a prestação do serviço seja eficiente e assim a relação é mais justa e dinâmica, evitando também perda e reinserção de dados.
 
 
 ## 🚀 Utilização
 
-<h3>Atualizações</h3>
+<h3>Desenvolvido em Flutter</h3>
 <ul>
-	<li>App para Android e IOS - Flutter</li>
-	<li>Frontend feito PHP/HTML/CSS/JQUERY</li>
-	<li>Gerenciador de pacotes - Composer</li>
+	<li>Utilizamos o infura para criar a conexão RPC</li>
+	<li>Utilizamos as APIS de QRCode e WEB3 para ler os dados do paciente e registrar no blockchain</li>
+	<li>O ABI do contrato pode ser encontrado em `assets/standardToken.json`</li>
 </ul>
 
 ## Integrações com apis
@@ -28,13 +28,7 @@ O Checkpoint é uma solução que centraliza os dados do paciente no Blockchain 
 <h3>Api da twilio</h3>
 <ul>
 	<li>Validação de Código de seguração do cadastro por sms</li>
-    <li>Envio da receita do paciente em pdf pelo whatsapp</li>
 </ul>
-
-
-## 📖 Documentação
-<!-- 
-:point_right: A documentação completa estará disponível [AQUI](https://github.com/victorbilisambipar/checkpoint/blob/master/doc.md). -->
 
 ## ✍ Autores
 
