@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:checkpoint_patient/pages/criar_carteira.dart';
 import 'package:checkpoint_patient/pages/home.dart';
+import 'package:checkpoint_patient/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,12 +20,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'CheckPoint',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
           fontFamily: GoogleFonts.reemKufi().fontFamily
         ),
         debugShowCheckedModeBanner: false,
         // home: HomePage());
         // home: HomePage());
-        home: CriarCarteiraPage());
+        // home: CriarCarteiraPage());
+        home: LoginPage());
   }
 }

@@ -32,6 +32,13 @@ dependencies:
   google_fonts: ^1.0.0
   flutter_svg: ^0.17.4
   shared_preferences: ^0.5.7
+  flutter_masked_text: ^0.8.0
+  dio: ^3.0.9
+  camera: ^0.5.7+4
+  awesome_dialog: ^0.1.4
+  permission_handler: ^5.0.0+hotfix.5
+  image_picker: ^0.6.5+3
+  pinput: ^0.2.3
 
 dev_dependencies:
   flutter_test:
